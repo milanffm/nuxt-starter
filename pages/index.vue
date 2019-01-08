@@ -18,6 +18,17 @@
 					target="_blank"
 					class="button--grey">GitHub</a>
 			</div>
+			<h1 class="title">Posts</h1>
+			<ul>
+				<li v-for="{ id, title } in slicedPosts">
+					{{ title }}
+				</li>
+			</ul>
+			<div class="links">
+				<button @click="createPost" class="button--grey">
+					Create a post (send POST request)
+				</button>
+			</div>
 		</div>
 	</section>
 </template>
@@ -29,7 +40,34 @@ export default {
 	components: {
 		Logo
 	},
-	transition: 'bounce'
+	transition: 'bounce',
+	data() {
+		return {
+			posts: []
+		}
+	},
+	async asyncData(ctx) {
+		return {
+			posts: await ctx.app.$postRepository.index()
+		}
+	},
+	computed: {
+		slicedPosts() {
+			return this.posts.slice(-3)
+		}
+	},
+	methods: {
+		async createPost() {
+			const result = await this.$postRepository.create({
+				title: 'foo',
+				body: 'bar',
+				userId: 1
+			});
+			console.log(result);
+			// Fix ids to be unique
+			this.posts.push({ ...result, id: Number(this.posts.slice(-1)[0].id) + 1 })
+		}
+	}
 }
 </script>
 

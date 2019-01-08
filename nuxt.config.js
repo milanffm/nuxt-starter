@@ -33,8 +33,7 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
-  ],
+  plugins: ['~/plugins/repository'],
 
   /*
   ** Nuxt.js modules
@@ -44,10 +43,12 @@ module.exports = {
     '@nuxtjs/axios'
   ],
   /*
-  ** Axios module configuration
-  */
+   ** Axios module configuration
+   */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
+      // See https://github.com/nuxt-community/axios-module#options
+      // Set the baseURL to JSONPlaceholder API
+      baseURL: 'https://jsonplaceholder.typicode.com/'
   },
 
   /*
