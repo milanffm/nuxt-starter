@@ -1,13 +1,22 @@
 <template>
 	<div class="container">
 		<h1>About</h1>
-		<img src="/img/test.jpg">
+		<div><img src="/img/test.jpg"><br></div>
+		<p>sdf</p>
+		<p>sdf</p>
+		<p>sdf</p>
+		<p>sdf</p>
+		<p>sdf</p>
+		<p>sdf</p>
+		<p>sdf</p>
+		<nuxt-link to="/">Home</nuxt-link>
+		<p>sdf</p>
 	</div>
 </template>
 <script>
 export default {
 	name: 'about',
-	transition: 'bounce'
+	transition: 'slide-left'
 }
 </script>
 

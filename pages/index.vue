@@ -24,6 +24,7 @@
 					{{ title }}
 				</li>
 			</ul>
+			<nuxt-link to="/about">About</nuxt-link>
 			<div class="links">
 				<button @click="createPost" class="button--grey">
 					Create a post (send POST request)
@@ -40,7 +41,7 @@ export default {
 	components: {
 		Logo
 	},
-	transition: 'bounce',
+	transition: 'slide-left',
 	data() {
 		return {
 			posts: []
@@ -53,7 +54,7 @@ export default {
 	},
 	computed: {
 		slicedPosts() {
-			return this.posts.slice(-3)
+			return this.posts
 		}
 	},
 	methods: {
@@ -67,19 +68,12 @@ export default {
 			// Fix ids to be unique
 			this.posts.push({ ...result, id: Number(this.posts.slice(-1)[0].id) + 1 })
 		}
-	}
+	},
+
 }
 </script>
 
-<style>
-
-	.container {
-		min-height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-	}
+<style scoped>
 
 	.title {
 		font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
